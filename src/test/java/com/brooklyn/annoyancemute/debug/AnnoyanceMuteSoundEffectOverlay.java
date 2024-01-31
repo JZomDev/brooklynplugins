@@ -55,7 +55,8 @@ class AnnoyanceMuteSoundEffectOverlay extends OverlayPanel
 	{
 		int soundId = event.getSoundId();
 
-		String text = "G: " + soundId;
+		String text = "G: " + soundId +
+			" - D: " + event.getDelay();
 
 		String action = ALLOWED;
 		Color actionColor = COLOR_ALLOWED;
@@ -83,7 +84,12 @@ class AnnoyanceMuteSoundEffectOverlay extends OverlayPanel
 		Color actionColor = COLOR_ALLOWED;
 
 		int soundId = event.getSoundId();
-		String text = "A: " + soundId;
+		String text =
+			"Id: " + event.getSoundId() +
+				" - S: " + (event.getSource() != null ? event.getSource().getName() : "<none>") +
+				" - L: " + event.getSceneX() + "," + event.getSceneY() +
+				" - R: " + event.getRange() +
+				" - D: " + event.getDelay();
 		String action = ALLOWED;
 
 		// Check if the player is within range to hear the sound
