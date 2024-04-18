@@ -361,6 +361,17 @@ public interface AnnoyanceMuteConfig extends Config
 		return true;
 	}
 
+	@ConfigItem(
+		keyName = "muteFortisColosseum",
+		name = "Fortis Colosseum",
+		description = "Mutes the ambient sounds of Fortis Colosseum",
+		section = ambientSection
+	)
+	default boolean muteFortisColosseum()
+	{
+		return true;
+	}
+
 
 	@ConfigItem(
 		keyName = "muteRandoms",

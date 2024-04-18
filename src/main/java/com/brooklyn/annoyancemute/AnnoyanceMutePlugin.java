@@ -121,6 +121,7 @@ public class AnnoyanceMutePlugin extends Plugin
 			switch (configChanged.getKey())
 			{
 				case "muteMagicTrees":
+				case "muteHousePortal":
 				case "muteWhiteNoise":
 				case "muteChirps":
 				case "muteWater":
@@ -681,6 +682,12 @@ public class AnnoyanceMutePlugin extends Plugin
 			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.RANGE_1, SoundEffectType.AMBIENT));
 			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.RANGE_2, SoundEffectType.AMBIENT));
 			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.COOKING_POT, SoundEffectType.AMBIENT));
+		}
+		if (config.muteFortisColosseum())
+		{
+			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.FORTIS_COLOSSEUM_AMBIENT_1, SoundEffectType.AMBIENT));
+			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.FORTIS_COLOSSEUM_AMBIENT_2, SoundEffectType.AMBIENT));
+			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.FORTIS_COLOSSEUM_FIRE, SoundEffectType.AMBIENT));
 		}
 
 		// add the user defined ambient sounds to mute to the list manually
