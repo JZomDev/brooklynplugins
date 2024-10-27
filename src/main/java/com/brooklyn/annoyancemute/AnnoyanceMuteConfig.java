@@ -329,6 +329,17 @@ public interface AnnoyanceMuteConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "muteStranglewoodHowls",
+		name = "Mute Stranglewood Howls",
+		description = "Mutes the howl sounds around Stranglewood",
+		section = ambientSection
+	)
+	default boolean muteStranglewoodHowls()
+	{
+		return true;
+	}
+
+	@ConfigItem(
 		keyName = "muteChirps",
 		name = "Chirps",
 		description = "Mutes the birds and cricket sounds",
