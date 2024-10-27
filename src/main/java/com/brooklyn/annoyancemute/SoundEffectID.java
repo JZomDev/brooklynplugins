@@ -300,5 +300,11 @@ public final class SoundEffectID
 	protected final static int[] COMMON_BACKGROUND_2184_WATER_1 = new int[]{3083, 3084, 3085, 3086};
 	protected final static int[] COMMON_BACKGROUND_2184_WATER_2 = new int[]{2153, 2154, 2148, 2167};
 
+	// Fortis Colosseum lobby
+	protected final static int FORTIS_COLOSSEUM_AMBIENT_1 = 8510;
+	protected final static int FORTIS_COLOSSEUM_AMBIENT_2 = 8513;
+	protected final static int FORTIS_COLOSSEUM_FIRE = 2065;
 
+	protected final static int COMMON_BACKGROUND_2 = -1;
+	protected final static int[] VARDORVIS_AREA = new int[]{3711, 3714, 3712, 3713};
 }

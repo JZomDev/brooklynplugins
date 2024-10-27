@@ -121,10 +121,13 @@ public class AnnoyanceMutePlugin extends Plugin
 			switch (configChanged.getKey())
 			{
 				case "muteMagicTrees":
+				case "muteHousePortal":
 				case "muteWhiteNoise":
 				case "muteChirps":
 				case "muteWater":
 				case "muteRanges":
+				case "muteFortisColosseum":
+				case "muteStranglewoodHowls":
 					clientThread.invoke(() ->
 					{
 						// Reload the scene to reapply ambient sounds
@@ -681,6 +684,17 @@ public class AnnoyanceMutePlugin extends Plugin
 			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.RANGE_1, SoundEffectType.AMBIENT));
 			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.RANGE_2, SoundEffectType.AMBIENT));
 			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.COOKING_POT, SoundEffectType.AMBIENT));
+		}
+		if (config.muteFortisColosseum())
+		{
+			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.FORTIS_COLOSSEUM_AMBIENT_1, SoundEffectType.AMBIENT));
+			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.FORTIS_COLOSSEUM_AMBIENT_2, SoundEffectType.AMBIENT));
+			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.FORTIS_COLOSSEUM_FIRE, SoundEffectType.AMBIENT));
+		}
+
+		if (config.muteStranglewoodHowls())
+		{
+			ambientSoundsToMute.add(new SoundEffect(SoundEffectID.COMMON_BACKGROUND_2, SoundEffectType.AMBIENT, SoundEffectID.VARDORVIS_AREA));
 		}
 
 		// add the user defined ambient sounds to mute to the list manually
