@@ -380,6 +380,8 @@ public class AnnoyanceMutePlugin extends Plugin
 		{
 			soundEffects.add(new SoundEffect(SoundEffectID.HIGH_ALCHEMY, SoundEffectType.EITHER));
 			soundEffects.add(new SoundEffect(SoundEffectID.LOW_ALCHEMY, SoundEffectType.EITHER));
+			soundEffects.add(new SoundEffect(SoundEffectID.TRAIL_BLAZERS_HIGH_ALCHEMY, SoundEffectType.EITHER));
+			soundEffects.add(new SoundEffect(SoundEffectID.TRAIL_BLAZERS_LOW_ALCHEMY, SoundEffectType.EITHER));
 		}
 		if (config.muteChopChop())
 		{
