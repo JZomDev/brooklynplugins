@@ -125,6 +125,9 @@ public final class SoundEffectID
 	// Alchemy
 	protected final static int LOW_ALCHEMY = 98;
 	protected final static int HIGH_ALCHEMY = 97;
+	// Trail Blazer's Alchemy
+	protected final static int TRAIL_BLAZERS_LOW_ALCHEMY = 7568;
+	protected final static int TRAIL_BLAZERS_HIGH_ALCHEMY = 7557;
 
 	// Prayers
 	protected final static int THICK_SKIN = 2690;
