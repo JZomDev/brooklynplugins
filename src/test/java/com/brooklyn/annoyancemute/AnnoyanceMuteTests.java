@@ -1,5 +1,6 @@
 package com.brooklyn.annoyancemute;
 
+import com.brooklyn.annoyancemute.soundeffects.AnimationSoundEffect;
 import com.google.inject.Guice;
 import com.google.inject.testing.fieldbinder.Bind;
 import com.google.inject.testing.fieldbinder.BoundFieldModule;
@@ -52,16 +53,16 @@ public class AnnoyanceMuteTests
 		when(client.getLocalPlayer()).thenReturn(localPlayer);
 		when(localPlayer.getAnimation()).thenReturn(7284);
 
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 714)); // Normal
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 1816)); // Lunar
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3864)); // Scroll
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3865)); // Xeric
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3867)); // Wilderness
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3869)); // Cabbage
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3872)); // Ardougne
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3874)); // Burgh
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 714)); // Normal
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 1816)); // Lunar
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3864)); // Scroll
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3865)); // Xeric
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3867)); // Wilderness
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3869)); // Cabbage
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3872)); // Ardougne
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3874)); // Burgh
 
-		assertTrue(plugin.shouldMute(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER));
+		assertTrue(plugin.shouldMute(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, localPlayer));
 	}
 
 	@Test
@@ -71,15 +72,15 @@ public class AnnoyanceMuteTests
 		when(client.getLocalPlayer()).thenReturn(localPlayer);
 		when(localPlayer.getAnimation()).thenReturn(714);
 
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 714)); // Normal
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 1816)); // Lunar
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3864)); // Scroll
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3865)); // Xeric
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3867)); // Wilderness
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3869)); // Cabbage
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3872)); // Ardougne
-		plugin.soundEffects.add(new SoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3874)); // Burgh
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 714)); // Normal
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 1816)); // Lunar
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3864)); // Scroll
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3865)); // Xeric
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3867)); // Wilderness
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3869)); // Cabbage
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3872)); // Ardougne
+		plugin.soundEffects.add(new AnimationSoundEffect(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, 3874)); // Burgh
 
-		assertFalse(plugin.shouldMute(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER));
+		assertFalse(plugin.shouldMute(SoundEffectID.TELEPORT_VWOOP, SoundEffectType.EITHER, localPlayer));
 	}
 }
