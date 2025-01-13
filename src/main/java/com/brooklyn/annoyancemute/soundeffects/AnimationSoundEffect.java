@@ -16,13 +16,6 @@ public class AnimationSoundEffect implements SoundEffect
 		this.animationID = new int[] {animationID};
 	}
 
-	public AnimationSoundEffect(int id, SoundEffectType soundEffectType)
-	{
-		this.id = id;
-		this.soundEffectType = soundEffectType;
-		this.animationID = new int[] {-1};
-	}
-
 	@Override
 	public int getId()
 	{

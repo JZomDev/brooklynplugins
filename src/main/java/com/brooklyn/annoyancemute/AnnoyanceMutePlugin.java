@@ -248,7 +248,8 @@ public class AnnoyanceMutePlugin extends Plugin
 		return ((double) totalSimilar / total > 0.75);
 	}
 
-	private void setUpMutes()
+	@VisibleForTesting
+	public void setUpMutes()
 	{
 		soundEffects = new HashSet<>();
 
@@ -759,6 +760,7 @@ public class AnnoyanceMutePlugin extends Plugin
 			soundEffectPlayed.consume();
 		}
 	}
+
 	@VisibleForTesting
 	public boolean shouldMute(int soundId, SoundEffectType type, @Nullable Actor source)
 	{
@@ -780,8 +782,7 @@ public class AnnoyanceMutePlugin extends Plugin
 			.filter(AnimationSoundEffect.class::isInstance)
 			.map(AnimationSoundEffect.class::cast)
 			.filter(s -> s.getId() == soundId
-				&& (s.getSoundEffectType() == SoundEffectType.EITHER || s.getSoundEffectType() == type)
-				&& s.getModifier()[0] == -1 || s.getModifier()[0] == client.getLocalPlayer().getAnimation())
+				&& (s.getSoundEffectType() == SoundEffectType.EITHER || s.getSoundEffectType() == type))
 			.collect(Collectors.toCollection(ArrayList::new));
 
 		// filter to combat levels
@@ -798,7 +799,13 @@ public class AnnoyanceMutePlugin extends Plugin
 		combinedList.addAll(animationSoundEffects);
 		combinedList.addAll(actorSoundEffects);
 
-		return !combinedList.isEmpty();
+		if (combinedList.isEmpty())
+		{
+			return false;
+		}
+		return (!genericSoundEffects.isEmpty()
+			|| !actorSoundEffects.isEmpty())
+			&& animationSoundEffects.stream().anyMatch(s -> s.getModifier()[0] == -1) || animationSoundEffects.stream().noneMatch(s -> s.getModifier()[0] == client.getLocalPlayer().getAnimation());
 	}
 
 	public List<String> getSelectedSounds()
