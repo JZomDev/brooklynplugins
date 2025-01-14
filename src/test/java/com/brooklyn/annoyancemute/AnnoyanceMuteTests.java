@@ -6,6 +6,7 @@ import com.google.inject.testing.fieldbinder.BoundFieldModule;
 import javax.inject.Inject;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Client;
+import net.runelite.api.NPC;
 import net.runelite.api.Player;
 import net.runelite.client.config.RuneLiteConfig;
 import net.runelite.client.events.ConfigChanged;
@@ -45,6 +46,66 @@ public class AnnoyanceMuteTests
 
 		when(config.soundsToMute()).thenReturn("");
 		when(config.ambientSoundsToMute()).thenReturn("");
+	}
+
+	@Test
+	public void muteWoodcutting()
+	{
+		when(config.muteWoodcutting()).thenReturn(true);
+
+		ConfigChanged configChanged = new ConfigChanged();
+		configChanged.setGroup("annoyancemute");
+		configChanged.setKey("annoyancemute");
+		plugin.onConfigChanged(configChanged);
+
+		assertTrue(plugin.shouldMute(SoundEffectID.WOODCUTTING_CHOP, SoundEffectType.EITHER, null));
+	}
+
+	@Test
+	public void muteDemons()
+	{
+		when(config.muteDemons()).thenReturn(false);
+
+		ConfigChanged configChanged = new ConfigChanged();
+		configChanged.setGroup("annoyancemute");
+		configChanged.setKey("annoyancemute");
+		plugin.onConfigChanged(configChanged);
+
+		assertFalse(plugin.shouldMute(SoundEffectID.DEMON_ATTACK, SoundEffectType.EITHER, null));
+	}
+
+	@Test
+	public void muteNoonPet()
+	{
+		when(config.mutePetSounds()).thenReturn(true);
+
+		ConfigChanged configChanged = new ConfigChanged();
+		configChanged.setGroup("annoyancemute");
+		configChanged.setKey("annoyancemute");
+		plugin.onConfigChanged(configChanged);
+
+		NPC noonpet = mock(NPC.class);
+		when(noonpet.getCombatLevel()).thenReturn(0);
+
+		assertTrue(plugin.shouldMute(SoundEffectID.NOON_FLAP_1, SoundEffectType.EITHER, noonpet));
+		assertTrue(plugin.shouldMute(SoundEffectID.NOON_FLAP_2, SoundEffectType.EITHER, noonpet));
+	}
+
+	@Test
+	public void muteNoon()
+	{
+		when(config.mutePetSounds()).thenReturn(true);
+
+		ConfigChanged configChanged = new ConfigChanged();
+		configChanged.setGroup("annoyancemute");
+		configChanged.setKey("annoyancemute");
+		plugin.onConfigChanged(configChanged);
+
+		NPC noon = mock(NPC.class);
+		when(noon.getCombatLevel()).thenReturn(222);
+
+		assertFalse(plugin.shouldMute(SoundEffectID.NOON_FLAP_1, SoundEffectType.EITHER, noon));
+		assertFalse(plugin.shouldMute(SoundEffectID.NOON_FLAP_2, SoundEffectType.EITHER, noon));
 	}
 
 	@Test

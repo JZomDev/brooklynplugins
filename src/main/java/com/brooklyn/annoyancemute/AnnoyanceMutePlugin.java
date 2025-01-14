@@ -803,8 +803,8 @@ public class AnnoyanceMutePlugin extends Plugin
 		{
 			return false;
 		}
-		return (!genericSoundEffects.isEmpty()
-			|| !actorSoundEffects.isEmpty())
+		return !genericSoundEffects.isEmpty()
+			&& !actorSoundEffects.isEmpty()
 			&& animationSoundEffects.stream().anyMatch(s -> s.getModifier()[0] == -1) || animationSoundEffects.stream().noneMatch(s -> s.getModifier()[0] == client.getLocalPlayer().getAnimation());
 	}
 
