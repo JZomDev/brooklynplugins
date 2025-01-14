@@ -190,12 +190,13 @@ public class AnnoyanceMutePlugin extends Plugin
 
 		for (net.runelite.api.AmbientSoundEffect ambientSoundEffect : ambientSoundEffects)
 		{
-			List<SoundEffect> mutedAmbientsSameID = ambientSoundsToMute.stream().filter(mutedSounds -> mutedSounds.getId() == ambientSoundEffect.getSoundEffectId()).collect(Collectors.toList());
+			List<AmbientSoundEffect> mutedAmbientsSameID = ambientSoundsToMute.stream().filter(AmbientSoundEffect.class::isInstance)
+				.map(AmbientSoundEffect.class::cast).filter(mutedSounds -> mutedSounds.getId() == ambientSoundEffect.getSoundEffectId()).collect(Collectors.toList());
 			boolean muteSound = false;
 			for (int i = 0; i < mutedAmbientsSameID.size() && !muteSound; i++)
 			{
 				int[] backgroundSounds = ambientSoundEffect.getBackgroundSoundEffectIds();
-				int[] backgroundSoundsToMute = mutedAmbientsSameID.get(i).getModifier();
+				int[] backgroundSoundsToMute = mutedAmbientsSameID.get(i).getBackgroundSoundEffects();
 
 				if (backgroundSounds == null && backgroundSoundsToMute.length == 0)
 				{
@@ -791,7 +792,7 @@ public class AnnoyanceMutePlugin extends Plugin
 			.map(ActorCombatSoundEffect.class::cast)
 			.filter(s -> s.getId() == soundId
 				&& (s.getSoundEffectType() == SoundEffectType.EITHER || s.getSoundEffectType() == type)
-				&& (s.getModifier()[0] == source.getCombatLevel()))
+				&& (s.getActorCombatLevel() == source.getCombatLevel()))
 			.collect(Collectors.toCollection(ArrayList::new)) : Collections.emptyList();
 
 		List<SoundEffect> combinedList = new ArrayList<>();
@@ -805,7 +806,10 @@ public class AnnoyanceMutePlugin extends Plugin
 		}
 		return !genericSoundEffects.isEmpty()
 			&& !actorSoundEffects.isEmpty()
-			&& animationSoundEffects.stream().anyMatch(s -> s.getModifier()[0] == -1) || animationSoundEffects.stream().noneMatch(s -> s.getModifier()[0] == client.getLocalPlayer().getAnimation());
+			&& animationSoundEffects.stream().filter(AnimationSoundEffect.class::isInstance)
+			.map(AnimationSoundEffect.class::cast).anyMatch(s -> s.getAnimationID() == -1) ||
+			animationSoundEffects.stream().filter(AnimationSoundEffect.class::isInstance)
+			.map(AnimationSoundEffect.class::cast).noneMatch(s -> s.getAnimationID() == client.getLocalPlayer().getAnimation());
 	}
 
 	public List<String> getSelectedSounds()

@@ -1,36 +1,16 @@
 package com.brooklyn.annoyancemute.soundeffects;
 
 import com.brooklyn.annoyancemute.SoundEffectType;
+import lombok.Getter;
 
-public class AnimationSoundEffect implements SoundEffect
+@Getter
+public class AnimationSoundEffect extends SoundEffect
 {
-
-	int id;
-	SoundEffectType soundEffectType;
-	int[] animationID;
+	int animationID;
 
 	public AnimationSoundEffect(int id, SoundEffectType soundEffectType, int animationID)
 	{
-		this.id = id;
-		this.soundEffectType = soundEffectType;
-		this.animationID = new int[] {animationID};
-	}
-
-	@Override
-	public int getId()
-	{
-		return this.id;
-	}
-
-	@Override
-	public SoundEffectType getSoundEffectType()
-	{
-		return this.soundEffectType;
-	}
-
-	@Override
-	public int[] getModifier()
-	{
-		return this.animationID;
+		super(id, soundEffectType);
+		this.animationID = animationID;
 	}
 }
