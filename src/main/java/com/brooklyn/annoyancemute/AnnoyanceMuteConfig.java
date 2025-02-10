@@ -994,6 +994,30 @@ public interface AnnoyanceMuteConfig extends Config
 	}
 
 	@ConfigItem(
+		keyName = "muteDeadeye",
+		name = "Deadeye",
+		description = "Mutes the activation sound of Deadeye",
+		section = prayerSection,
+		position = 27
+	)
+	default boolean muteDeadeye()
+	{
+		return false;
+	}
+
+	@ConfigItem(
+		keyName = "muteMysticVigour",
+		name = "Mystic Rigour",
+		description = "Mutes the activation sound of Mystic Vigour",
+		section = prayerSection,
+		position = 28
+	)
+	default boolean muteMysticVigour()
+	{
+		return false;
+	}
+
+	@ConfigItem(
 		keyName = "muteDeactivatePrayer",
 		name = "Deactivate Prayer",
 		description = "Mutes the prayer deactivation sound",
