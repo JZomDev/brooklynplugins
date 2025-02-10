@@ -158,6 +158,8 @@ public final class SoundEffectID
 	protected final static int PIETY = 3825;
 	protected final static int RIGOUR = 2685;
 	protected final static int AUGURY = 2670;
+	protected final static int DEADEYE = 10194 ;
+	protected final static int MYSTIC_VIGOUR = 10100;
 	protected final static int DEACTIVATE_PRAYER = 2663;
 
 	// Woodcutting

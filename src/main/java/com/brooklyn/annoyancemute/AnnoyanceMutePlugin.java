@@ -560,6 +560,14 @@ public class AnnoyanceMutePlugin extends Plugin
 		{
 			soundEffects.add(new GenericSoundEffect(SoundEffectID.AUGURY, SoundEffectType.EITHER));
 		}
+		if (config.muteMysticVigour())
+		{
+			soundEffects.add(new GenericSoundEffect(SoundEffectID.MYSTIC_VIGOUR, SoundEffectType.EITHER));
+		}
+		if (config.muteDeadeye())
+		{
+			soundEffects.add(new GenericSoundEffect(SoundEffectID.DEADEYE, SoundEffectType.EITHER));
+		}
 		if (config.muteDeactivatePrayer())
 		{
 			soundEffects.add(new GenericSoundEffect(SoundEffectID.DEACTIVATE_PRAYER, SoundEffectType.EITHER));
